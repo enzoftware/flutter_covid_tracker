@@ -53,7 +53,10 @@ class _ItemCountryTextState extends State<ItemCountryText>
             ),
           ),
           SizedBox(height: 8),
-          Text(widget.description)
+          Text(
+            widget.description,
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          )
         ],
       ),
     );

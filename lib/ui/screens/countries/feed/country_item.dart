@@ -12,6 +12,7 @@ class CountryItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Card(
+        color: Colors.indigo[900],
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
@@ -20,7 +21,12 @@ class CountryItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    "${countryData.country} (${countryData.countryCode}) - ${countryData.newConfirmed} new cases"),
+                  "${countryData.country} (${countryData.countryCode}) - ${countryData.newConfirmed} new cases",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
