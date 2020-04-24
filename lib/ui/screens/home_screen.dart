@@ -44,7 +44,9 @@ class HomeBody extends StatelessWidget {
     return TabBarView(
       children: [
         CountriesScreen(countries: summaryBloc.summary.countries),
-        WorldScreen(),
+        WorldScreen(
+          globalData: summaryBloc.summary.global,
+        )
       ],
     );
   }
