@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.indigo[800],
         appBar: AppBar(
           title: Text("Covid-19 Tracker"),
           bottom: TabBar(

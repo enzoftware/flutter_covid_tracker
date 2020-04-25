@@ -8,7 +8,6 @@ class SummaryRepositoryImplementation extends SummaryRepository {
   Future<SummaryData> retrieveSummaryData() async {
     const apiUrl = "https://api.covid19api.com/summary";
     var response = await http.get(apiUrl);
-    print(response.body);
     return SummaryData.fromJson(json.decode(response.body));
   }
 }
