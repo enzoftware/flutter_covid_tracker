@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_tracker/data/models/summary.dart';
+import 'package:flutter_covid_tracker/ui/screens/countries/detail/detail_screen.dart';
 import 'package:flutter_covid_tracker/ui/screens/countries/feed/country_item.dart';
 
 class CountriesScreen extends StatefulWidget {
@@ -16,18 +17,25 @@ class _CountriesScreenState extends State<CountriesScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.indigo[800],
         body: ListView.builder(
-          itemBuilder: (BuildContext context, int index) =>
-              CountryItem(countryData: widget.countries[index]),
+          itemBuilder: (BuildContext context, int index) => Hero(
+            tag: 'hero-country' + widget.countries[index].countryCode,
+            child: CountryItem(
+              countryData: widget.countries[index],
+              onCountryTapped: () => DetailScreen.navigate(
+                context,
+                widget.countries[index],
+              ),
+            ),
+          ),
           itemCount: widget.countries.length,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            setState(() {
-              widget.countries
-                  .sort((a, b) => b.totalConfirmed - a.totalConfirmed);
-            });
+            widget.countries
+                .sort((a, b) => b.totalConfirmed - a.totalConfirmed);
+            setState(() {});
           },
           child: Icon(Icons.filter_list),
         ),

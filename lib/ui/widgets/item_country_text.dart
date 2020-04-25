@@ -39,6 +39,12 @@ class _ItemCountryTextState extends State<ItemCountryText>
   }
 
   @override
+  void didUpdateWidget(ItemCountryText oldWidget) {
+    animationController.forward();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: animationController,
@@ -47,7 +53,7 @@ class _ItemCountryTextState extends State<ItemCountryText>
           Text(
             animation.value.toString(),
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 22,
               color: widget.colorQuantity,
               fontWeight: FontWeight.bold,
             ),
