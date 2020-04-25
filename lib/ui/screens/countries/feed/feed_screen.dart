@@ -13,6 +13,14 @@ class CountriesScreen extends StatefulWidget {
 }
 
 class _CountriesScreenState extends State<CountriesScreen> {
+  List<CountryData> countries;
+
+  @override
+  void initState() {
+    countries = widget.countries;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,21 +28,21 @@ class _CountriesScreenState extends State<CountriesScreen> {
         backgroundColor: Colors.indigo[800],
         body: ListView.builder(
           itemBuilder: (BuildContext context, int index) => Hero(
-            tag: 'hero-country' + widget.countries[index].countryCode,
+            key: UniqueKey(),
+            tag: 'hero-country' + countries[index].countryCode,
             child: CountryItem(
-              countryData: widget.countries[index],
+              countryData: countries[index],
               onCountryTapped: () => DetailScreen.navigate(
                 context,
-                widget.countries[index],
+                countries[index],
               ),
             ),
           ),
-          itemCount: widget.countries.length,
+          itemCount: countries.length,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            widget.countries
-                .sort((a, b) => b.totalConfirmed - a.totalConfirmed);
+            countries.sort((a, b) => b.totalConfirmed - a.totalConfirmed);
             setState(() {});
           },
           child: Icon(Icons.filter_list),

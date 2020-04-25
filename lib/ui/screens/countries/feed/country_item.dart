@@ -2,24 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_covid_tracker/data/models/summary.dart';
 import 'package:flutter_covid_tracker/ui/widgets/item_country_text.dart';
 
-class CountryItem extends StatefulWidget {
+class CountryItem extends StatelessWidget {
   final CountryData countryData;
   final VoidCallback onCountryTapped;
 
-  const CountryItem({Key key, @required this.countryData, this.onCountryTapped})
+  const CountryItem({Key key, this.countryData, this.onCountryTapped})
       : super(key: key);
 
-  @override
-  _CountryItemState createState() => _CountryItemState();
-}
-
-class _CountryItemState extends State<CountryItem> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: GestureDetector(
-        onTap: widget.onCountryTapped,
+        onTap: onCountryTapped,
         child: Card(
           color: Colors.indigo[900],
           child: Padding(
@@ -30,7 +25,7 @@ class _CountryItemState extends State<CountryItem> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "${widget.countryData.country} (${widget.countryData.countryCode}) - ${widget.countryData.newConfirmed} new cases",
+                    "${countryData.country} (${countryData.countryCode}) - ${countryData.newConfirmed} new cases",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -41,17 +36,17 @@ class _CountryItemState extends State<CountryItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     ItemCountryText(
-                      quantity: widget.countryData.totalConfirmed,
+                      quantity: countryData.totalConfirmed,
                       description: 'Confirmed',
                       colorQuantity: Colors.yellow,
                     ),
                     ItemCountryText(
-                      quantity: widget.countryData.totalRecovered,
+                      quantity: countryData.totalRecovered,
                       description: 'Recovered',
                       colorQuantity: Colors.green,
                     ),
                     ItemCountryText(
-                      quantity: widget.countryData.totalDeaths,
+                      quantity: countryData.totalDeaths,
                       description: 'Death',
                       colorQuantity: Colors.red,
                     ),
